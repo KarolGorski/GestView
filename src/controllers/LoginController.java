@@ -1,14 +1,11 @@
 package controllers;
 
-import application.Keys;
+
+import app.Keys;
+import app.Main;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.DirectoryChooser;
-import application.AppRunner;
-
-import java.io.File;
-
 
 public class LoginController {
 /*
@@ -34,7 +31,7 @@ public class LoginController {
 //            RegisterController controller = loader.<RegisterController>getController();
 //            controller.initDb(db);
 //
-//            Main.stage.setScene(scene);
+//            app.Main.stage.setScene(scene);
 //        }catch(Exception e){}
 
         DirectoryChooser chooser = new DirectoryChooser();
@@ -46,6 +43,17 @@ public class LoginController {
 
     public void login()
     {
-                AppRunner.getInstance().setScene(Keys.Views.MAIN_MENU);
+               // AppRunner.getInstance().setScene(app.Keys.Views.MAIN_MENU);
+        FXMLLoader loader = new FXMLLoader(LoginController.class.getResource(Keys.Views.MAIN_MENU));
+        try{
+            AnchorPane pane = loader.load();
+            Scene scene = new Scene(pane);
+            scene.getStylesheets().addAll(LoginController.class.getResource(Keys.Style.STYLE).toExternalForm());
+            Main.stage.setScene(scene);
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+
     }
 }

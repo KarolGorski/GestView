@@ -1,4 +1,5 @@
-import application.Keys;
+package app;
+
 import controllers.LoginController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -20,7 +21,7 @@ public class Main extends Application {
         //ustawiamy dodatkowe parametry
         stage.initStyle(StageStyle.DECORATED);
         stage.setTitle("Example 1");
-        scene.getStylesheets().addAll(LoginController.class.getResource("style.css").toExternalForm());
+        scene.getStylesheets().addAll(LoginController.class.getResource(Keys.Style.STYLE).toExternalForm());
         stage.setScene(scene);
 
         //wyswietlamy scene

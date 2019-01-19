@@ -52,7 +52,7 @@ public class RegisterController {
 
                     Scene scene = new Scene(sceneMain);
 
-                    //Main.stage.setScene(scene);
+                    //app.Main.stage.setScene(scene);
 
                 } catch (Exception e) {
                 }

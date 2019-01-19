@@ -9,7 +9,7 @@
 
 <AnchorPane id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="900.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.LoginController">
     <children>
-        <Pane layoutX="275.0" layoutY="151.0"  prefHeight="229.0" prefWidth="350.0" style="-fx-background-color: #fff; -fx-background-radius: 40px;">
+        <Pane layoutX="275.0" layoutY="151.0" onDragDetected="#login" prefHeight="229.0" prefWidth="350.0" style="-fx-background-color: #fff; -fx-background-radius: 40px;">
             <effect>
                 <DropShadow color="#bcbcbc" />
             </effect>
