@@ -1,0 +1,4 @@
+#rootPane {
+    -fx-background-image: url("../resources/pencil2.jpg");
+    -fx-background-size: cover;
+}
