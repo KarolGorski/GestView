@@ -3,8 +3,8 @@ package controllers;
 import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import models.database.User;
-import models.math.mathOperations;
+import model.database.User;
+import model.math.mathOperations;
 
 
 public class CalcController {

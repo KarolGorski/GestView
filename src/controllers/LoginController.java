@@ -1,7 +1,7 @@
 package controllers;
 
 
-import app.Keys;
+import displayKeys.Keys;
 import app.Main;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -43,7 +43,7 @@ public class LoginController {
 
     public void login()
     {
-               // AppRunner.getInstance().setScene(app.Keys.Views.MAIN_MENU);
+               // AppRunner.getInstance().setScene(displayKeys.Keys.Views.MAIN_MENU);
         FXMLLoader loader = new FXMLLoader(LoginController.class.getResource(Keys.Views.MAIN_MENU));
         try{
             AnchorPane pane = loader.load();

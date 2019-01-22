@@ -7,8 +7,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
-import models.database.User;
-import models.database.UserDatabase;
+import model.database.User;
+import model.database.UserDatabase;
 
 
 public class RegisterController {

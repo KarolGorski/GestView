@@ -1,16 +1,27 @@
 package app;
 
 import controllers.LoginController;
+import displayKeys.Keys;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import model.data.filesComposite.Component;
+import model.data.serialization.Deserializer;
+
+import java.util.ArrayList;
+import java.util.List;
+
+
 
 public class Main extends Application {
 
+    public static String serializationPath ="serializedData";
     public static Stage stage;
+    public static Deserializer deserializer;
+    public static List<Component> dataList = deserializer.deserializeAndGetContent(serializationPath);
 
     @Override
     public void start(Stage primaryStage) throws Exception{
