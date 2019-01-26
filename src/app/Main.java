@@ -31,6 +31,11 @@ public class Main extends Application {
         scene.getStylesheets().addAll(LoginController.class.getResource(Keys.Style.STYLE).toExternalForm());
         stage.setScene(scene);
 
+        stage.setOnCloseRequest(event -> {
+            //do all your processing here
+            dataSerialization.saveContent(dataRoot);
+        });
+
         //wyswietlamy scene
         stage.show();
     }

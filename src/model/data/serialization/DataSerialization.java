@@ -1,6 +1,7 @@
 package model.data.serialization;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 import model.data.filesComposite.Component;
 import model.data.filesComposite.CompositeStructureRoot;
@@ -23,7 +24,9 @@ public class DataSerialization {
 
     public DataSerialization(String pathToSerializedData) {
         this.pathToSerializedData = pathToSerializedData;
-        this.gson = new Gson();
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        gsonBuilder.registerTypeAdapter(Component.class, new AbstractComponentAdapter());
+        this.gson = gsonBuilder.create();
     }
 
     public void setPathToSerializedData(String pathToSerializedData) {
@@ -42,6 +45,7 @@ public class DataSerialization {
             e.printStackTrace();
             return false;
         }
+        System.out.println("Saving data is done! :3 ");
         return true;
     }
 
@@ -51,6 +55,7 @@ public class DataSerialization {
         try{
             rootJson = new String(Files.readAllBytes(Paths.get(pathToSerializedData)), StandardCharsets.UTF_8);
             root = gson.fromJson(rootJson, CompositeStructureRoot.class);
+            System.out.println("Reading data is done! :3 ");
         }catch (IOException e){
             e.printStackTrace();
             System.err.println("Reading from file didn't go as expected");

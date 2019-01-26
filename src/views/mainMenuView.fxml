@@ -25,9 +25,9 @@
                            </columns>
                         </TableView>
                         <Label layoutX="341.0" layoutY="14.0" />
-                        <Button fx:id="pickPathButton" onAction="#pickPathButtonAction" layoutX="491.0" layoutY="93.0" mnemonicParsing="false" text="Pick directory!" />
+                        <Button fx:id="pickPathButton" layoutX="314.0" layoutY="23.0" mnemonicParsing="false" onAction="#pickPathButtonAction" text="Pick new directory!" />
                         <TextField fx:id="pickedPathTextField" layoutX="314.0" layoutY="55.0" prefHeight="25.0" prefWidth="268.0" promptText="Your path" />
-                        <Label layoutX="314.0" layoutY="31.0" text="Add new directory" />
+                        <Button fx:id="addPathButton" layoutX="466.0" layoutY="89.0" mnemonicParsing="false" onAction="#addPathButtonAction" text="Pick new directory!" />
                      </children></AnchorPane>
             </content>
           </Tab>
