@@ -1,3 +1,4 @@
+/*
 package controllers;
 
 import com.jfoenix.controls.JFXTextField;
@@ -69,4 +70,4 @@ public class CalcController {
                         .toString());
     }
 
-}
+}*/

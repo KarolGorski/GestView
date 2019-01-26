@@ -1,3 +1,4 @@
+/*
 package controllers;
 
 import com.jfoenix.controls.JFXPasswordField;
@@ -63,3 +64,4 @@ public class RegisterController {
 
     }
 }
+*/
