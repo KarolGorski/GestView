@@ -8,20 +8,16 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import model.data.filesComposite.Component;
-import model.data.serialization.Deserializer;
-
-import java.util.ArrayList;
-import java.util.List;
-
+import model.data.filesComposite.CompositeStructureRoot;
+import model.data.serialization.DataSerialization;
 
 
 public class Main extends Application {
 
-    public static String serializationPath ="serializedData";
+
     public static Stage stage;
-    public static Deserializer deserializer;
-    public static List<Component> dataList = deserializer.deserializeAndGetContent(serializationPath);
+    public static CompositeStructureRoot dataRoot;
+    public static DataSerialization dataSerialization;
 
     @Override
     public void start(Stage primaryStage) throws Exception{
@@ -40,7 +36,14 @@ public class Main extends Application {
     }
 
 
+     public static void initData(){
+        dataSerialization = new DataSerialization(Keys.Paths.SERIALIZED_DATA_PATH);;
+        dataRoot = dataSerialization.getDataOrCreateNew();
+     }
+
+
     public static void main(String[] args) {
+        initData();
         launch(args);
     }
 }
