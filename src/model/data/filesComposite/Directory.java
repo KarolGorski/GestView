@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Directory extends Component {
+    List<Component> listOfComponents;
 
     public Directory(String path, List<Tag> tagList) {
         super(path, tagList);
@@ -20,5 +21,11 @@ public class Directory extends Component {
         listOfComponents.remove(component);
     }
 
-    List<Component> listOfComponents;
+    public List<Component> getListOfComponents(){
+        return listOfComponents;
+    }
+
+    public int getComponentsNumber(){
+        return listOfComponents.size();
+    }
 }

@@ -27,7 +27,7 @@ public class Main extends Application {
         stage = primaryStage;
         //ustawiamy dodatkowe parametry
         stage.initStyle(StageStyle.DECORATED);
-        stage.setTitle("Example 1");
+        stage.setTitle("GestView");
         scene.getStylesheets().addAll(LoginController.class.getResource(Keys.Style.STYLE).toExternalForm());
         stage.setScene(scene);
 

@@ -6,6 +6,11 @@ import java.util.List;
 
 public abstract class Component {
 
+    String path;
+    boolean love;
+    boolean alreadyDrawn;
+    List<Tag> tagList;
+
     public Component(String path, List<Tag> tagList) {
         this.path = path;
         this.love = false;
@@ -13,8 +18,7 @@ public abstract class Component {
         this.tagList = tagList;
     }
 
-    String path;
-    boolean love;
-    boolean alreadyDrawn;
-    List<Tag> tagList;
+    public String getPath(){
+        return path;
+    }
 }
