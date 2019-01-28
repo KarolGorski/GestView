@@ -2,3 +2,8 @@
     -fx-background-image: url("../resources/pencil2.jpg");
     -fx-background-size: cover;
 }
+
+#button{
+    -fx-background-color: #535557#8d8f91;
+    -fx-background-radius: 50;
+}

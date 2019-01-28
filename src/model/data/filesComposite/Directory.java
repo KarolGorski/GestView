@@ -8,7 +8,7 @@ import java.util.List;
 public class Directory extends Component {
     List<Component> listOfComponents;
 
-    public Directory(String path, List<Tag> tagList) {
+    public Directory(String path, ArrayList<String> tagList) {
         super(path, tagList);
         listOfComponents = new ArrayList<Component>();
     }

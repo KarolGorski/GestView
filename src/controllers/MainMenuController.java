@@ -39,12 +39,14 @@ public class MainMenuController {
         File selectedDirectory = chooser.showDialog(Main.stage);
         System.out.println("STH WORKS? :3");
 
-        return selectedDirectory.getAbsolutePath();
+        return selectedDirectory==null?null:selectedDirectory.getAbsolutePath();
     }
 
     public void addPathButtonAction(){
         System.err.println("Tag list is not implemented yet!");
-        Component dir =PathParser.parse(directoryChoose(),new ArrayList<Tag>());
+        String path = directoryChoose();
+        if(path==null) return;
+        Component dir =PathParser.parse(path,new ArrayList<String>());
         Main.dataRoot.addToList(dir);
         displayImagesFromAddedDirectory_Test(dir);
     }
@@ -54,7 +56,7 @@ public class MainMenuController {
     private void displayImagesFromAddedDirectory_Test(Component dir){
 
         elementSize = 200;
-        //imagesDisplayTilePane.setPrefColumns(colN);
+        imagesDisplayTilePane.setPrefColumns(3);
         imagesDisplayTilePane.setHgap(gapSize);
         imagesDisplayTilePane.setVgap(gapSize);
 
@@ -78,9 +80,11 @@ public class MainMenuController {
         else
             imageView.setFitHeight(elementSize);
 
+
         VBox box = new VBox();
         box.getChildren().add(imageView);
-        //box.setStyle("-fx-border-color: #838383;");
+        box.setStyle("-fx-border-color: white;");
+        //box.setStyle("-fx-background-color: grey");
         box.setAlignment(Pos.CENTER);
         return box;
     }
