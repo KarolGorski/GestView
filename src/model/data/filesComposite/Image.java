@@ -8,7 +8,7 @@ import java.util.List;
 
 public class Image extends Component {
 
-    public Image(String path, ArrayList<String> tagList) {
-        super(path, tagList);
+    public Image(String name, String path, ArrayList<String> tagList) {
+        super(name, path, tagList);
     }
 }
