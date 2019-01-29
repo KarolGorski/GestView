@@ -22,6 +22,11 @@
                   <JFXButton id="button" fx:id="addPathButton1" alignment="CENTER" buttonType="RAISED" layoutX="10.0" layoutY="13.0" mnemonicParsing="false" onAction="#nextButton" prefHeight="22.0" prefWidth="110.0" ripplerFill="#5b5b5b" stylesheets="@style.css" text="Next" textFill="WHITE" />
                   <JFXButton id="button" fx:id="addPathButton11" alignment="CENTER" buttonType="RAISED" layoutX="74.0" layoutY="13.0" mnemonicParsing="false" onAction="#prevButton" prefHeight="22.0" prefWidth="110.0" ripplerFill="#5b5b5b" stylesheets="@style.css" text="Previous" textFill="WHITE" />
                   <JFXButton id="button" fx:id="addPathButton12" alignment="CENTER" buttonType="RAISED" layoutX="74.0" layoutY="13.0" mnemonicParsing="false" onAction="#stopButton" prefHeight="22.0" prefWidth="110.0" ripplerFill="#5b5b5b" stylesheets="@style.css" text="Back to menu" textFill="WHITE" />
+                  <Label fx:id="quantityLeft" contentDisplay="RIGHT" layoutX="10.0" layoutY="12.0" prefHeight="27.0" prefWidth="91.0" text="10 left" textAlignment="CENTER" textFill="#5e5e5e">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
               </items>
             </ToolBar>
          </bottom>

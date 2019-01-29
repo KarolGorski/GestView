@@ -12,10 +12,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -140,10 +137,16 @@ public class MainMenuController {
     public void removePathButtonAction(){
 
         observableCompositeRoot.removeFromList(observedValue);
+        observableList = observableCompositeRoot.getObservableList();
         pathsTable.setItems(observableList);
     }
 
     public void startDrawingButtonAction(){
+        if(observableList.size()==0){
+            showAlert("You don't have anything in your directories...");
+            return;
+        }
+
         FXMLLoader loader = new FXMLLoader(LoginController.class.getResource(Keys.Views.DRAW_VIEW));
         try{
             AnchorPane pane = loader.load();
@@ -163,11 +166,18 @@ public class MainMenuController {
 
             scene.getStylesheets().addAll(LoginController.class.getResource(Keys.Style.STYLE).toExternalForm());
             Main.stage.setScene(scene);
+            Main.stage.setFullScreen(true);
         }
         catch(Exception e){
             e.printStackTrace();
         }
     }
+
+    public void showAlert(String warning){
+        Alert alert = new Alert(Alert.AlertType.WARNING, warning, ButtonType.OK);
+        alert.showAndWait();
+    }
+
 
 
 

@@ -20,6 +20,7 @@ public class LoginController {
             controller.initData();
             scene.getStylesheets().addAll(LoginController.class.getResource(Keys.Style.STYLE).toExternalForm());
             Main.stage.setScene(scene);
+            Main.stage.setFullScreen(true);
         }
         catch(Exception e){
             e.printStackTrace();

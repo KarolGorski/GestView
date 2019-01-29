@@ -26,6 +26,8 @@ public class DrawViewController {
     @FXML
     Label timeLeftLabel;
     @FXML
+    Label quantityLeft;
+    @FXML
     ImageView imageViewToFill;
     Image image;
 
@@ -43,22 +45,27 @@ public class DrawViewController {
     }
 
     public void startClass(){
-        Main.stage.setFullScreen(true);
+        //Main.stage.setFullScreen(true);
         image = new Image(
                 new File(imgArray.get(currentIndex).getPath()).toURI().toString());
         imageViewToFill.setImage(image);
         imageViewToFill.preserveRatioProperty();
         //imageViewToFill.setFitHeight(imageViewToFill.getFitHeight());
-        if(image.getHeight()>image.getWidth())
-            imageViewToFill.fitHeightProperty().bind(Main.stage.widthProperty());
-        else
-            imageViewToFill.fitWidthProperty().bind(Main.stage.heightProperty());
+        //if(image.getHeight()>image.getWidth())
+         //   imageViewToFill.fitHeightProperty().bind(Main.stage.widthProperty());
+        //else
+        //    imageViewToFill.fitWidthProperty().bind(Main.stage.heightProperty());
+        imageViewToFill.setFitHeight(imageViewToFill.getBoundsInParent().getHeight()-100);
 
         currentIndex++;
     }
 
     public void changeTimeLabel(String value){
         timeLeftLabel.setText(value);
+    }
+
+    public void setQuantityLeftLabel(int quantity){
+        quantityLeft.setText(quantity + " is left");
     }
 
 
@@ -74,10 +81,10 @@ public class DrawViewController {
         imageViewToFill.setImage(image);
         imageViewToFill.preserveRatioProperty();
         //imageViewToFill.setFitHeight(imageViewToFill.getFitHeight());
-        if(image.getHeight()>image.getWidth())
-            imageViewToFill.fitHeightProperty().bind(Main.stage.widthProperty());
-        else
-            imageViewToFill.fitWidthProperty().bind(Main.stage.heightProperty());
+        //if(image.getHeight()>image.getWidth())
+            imageViewToFill.setFitHeight(imageViewToFill.getBoundsInParent().getHeight());
+        //else
+         //   imageViewToFill.fitWidthProperty().bind(Main.stage.heightProperty());
 
         currentIndex++;
     }
@@ -93,7 +100,7 @@ public class DrawViewController {
     }
 
     public void getToTheMain(){
-        Main.stage.setFullScreen(false);
+        //Main.stage.setFullScreen(false);
         //Main.stage.setMaximized(false);
         //Main.stage.setAlwaysOnTop(false);
         FXMLLoader loader = new FXMLLoader(LoginController.class.getResource(Keys.Views.MAIN_MENU));
@@ -104,6 +111,7 @@ public class DrawViewController {
             controller.initData();
             scene.getStylesheets().addAll(LoginController.class.getResource(Keys.Style.STYLE).toExternalForm());
             Main.stage.setScene(scene);
+            Main.stage.setFullScreen(true);
         }
         catch(Exception e){
             e.printStackTrace();

@@ -25,7 +25,7 @@ public class TimeCounter{
         this.numberOfReps = numberOfReps;
         timer = new Timer();
        // timer2 = new Timer();
-        timer.scheduleAtFixedRate(new ChangeImgTask(), 0, period);
+        timer.scheduleAtFixedRate(new ChangeImgTask(), 100, period);
         //timer2.scheduleAtFixedRate(new ChangeTimeLabelTask(), 0, period);
         timeLeft=timeToChangeImage;
 
@@ -37,7 +37,7 @@ public class TimeCounter{
 
     public void runAgain(){
         timer=new Timer();
-        timer.scheduleAtFixedRate(new ChangeImgTask(), 0, period);
+        timer.scheduleAtFixedRate(new ChangeImgTask(), 100, period);
         timeLeft = timeToChangeImage;
     }
 
@@ -47,18 +47,23 @@ public class TimeCounter{
 
     class ChangeImgTask extends TimerTask {
         public void run() {
-
-            Platform.runLater(()->drawViewController.changeTimeLabel(secondsToString((timeLeft+1000)/1000)));
+            timeLeft-=period;
+            Platform.runLater(()->drawViewController.changeTimeLabel(secondsToString(Math.min(timeToChangeImage/1000,(timeLeft+1000)/1000))));
 
             if(timeLeft<=0){
+                if(numberOfReps>0)
+                    numberOfReps--;
+                if(numberOfReps<=0){
+                    timer.cancel();
+                    Platform.runLater(()->drawViewController.finishClass());
+                }
                 Platform.runLater(()->drawViewController.changeImage(1));
                 System.out.format("Changing IMAGE :3");
-                numberOfReps--;
+
                 timeLeft = timeToChangeImage;
+                Platform.runLater(()->drawViewController.setQuantityLeftLabel(numberOfReps));
             }
-            timeLeft-=period;
-            if(numberOfReps<=0)
-                timer.cancel();
+
         }
 
         private String secondsToString(int pTime) {
@@ -66,16 +71,7 @@ public class TimeCounter{
         }
     }
 
-    class ChangeTimeLabelTask extends TimerTask{
-        public void run(){
 
-            if(numberOfReps==0)
-                timer2.cancel();
-            timeLeft--;
-        }
-
-
-    }
 
 
 }

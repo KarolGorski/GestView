@@ -38,6 +38,7 @@ public class Main extends Application {
 
         //wyswietlamy scene
         stage.show();
+
     }
 
 
