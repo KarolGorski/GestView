@@ -16,44 +16,65 @@ public class TimeCounter{
     static int numberOfReps=5;
 
     static int delay = 1000;
-    static int period = 1000;
+    static int period = 500;
     int timeLeft = 0;
 
     public TimeCounter(DrawViewController drawViewController, int seconds, int numberOfReps) {
-        timeToChangeImage = seconds;
+        timeToChangeImage = seconds*1000;
         this.drawViewController = drawViewController;
         this.numberOfReps = numberOfReps;
         timer = new Timer();
-        timer2 = new Timer();
-        timer.scheduleAtFixedRate(new ChangeImgTask(), 0, timeToChangeImage*1000);
-        timer2.scheduleAtFixedRate(new ChangeTimeLabelTask(), 0, period);
+       // timer2 = new Timer();
+        timer.scheduleAtFixedRate(new ChangeImgTask(), 0, period);
+        //timer2.scheduleAtFixedRate(new ChangeTimeLabelTask(), 0, period);
         timeLeft=timeToChangeImage;
 
     }
 
-    class ChangeImgTask extends TimerTask {
-        public void run() {
-            Platform.runLater(()->drawViewController.changeImage(1));
-            System.out.format("Changing IMAGE :3");
-            numberOfReps--;
-            if(numberOfReps<=0)
-                timer.cancel();
-            timeLeft = timeToChangeImage;
-
-        }
+    public void resetTimer(){
+        timeLeft=timeToChangeImage;
     }
 
-    class ChangeTimeLabelTask extends TimerTask{
-        public void run(){
-            timeLeft--;
-            Platform.runLater(()->drawViewController.changeTimeLabel(secondsToString(timeLeft)));
+    public void runAgain(){
+        timer=new Timer();
+        timer.scheduleAtFixedRate(new ChangeImgTask(), 0, period);
+        timeLeft = timeToChangeImage;
+    }
+
+    public void stop(){
+        timer.cancel();
+    }
+
+    class ChangeImgTask extends TimerTask {
+        public void run() {
+
+            Platform.runLater(()->drawViewController.changeTimeLabel(secondsToString((timeLeft+1000)/1000)));
+
+            if(timeLeft<=0){
+                Platform.runLater(()->drawViewController.changeImage(1));
+                System.out.format("Changing IMAGE :3");
+                numberOfReps--;
+                timeLeft = timeToChangeImage;
+            }
+            timeLeft-=period;
             if(numberOfReps<=0)
-                timer2.cancel();
+                timer.cancel();
         }
 
         private String secondsToString(int pTime) {
             return String.format("%02d:%02d", pTime / 60, pTime % 60);
         }
+    }
+
+    class ChangeTimeLabelTask extends TimerTask{
+        public void run(){
+
+            if(numberOfReps==0)
+                timer2.cancel();
+            timeLeft--;
+        }
+
+
     }
 
 

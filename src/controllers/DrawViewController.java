@@ -43,11 +43,16 @@ public class DrawViewController {
     }
 
     public void startClass(){
+        Main.stage.setFullScreen(true);
         image = new Image(
                 new File(imgArray.get(currentIndex).getPath()).toURI().toString());
         imageViewToFill.setImage(image);
         imageViewToFill.preserveRatioProperty();
-        imageViewToFill.setFitHeight(imageViewToFill.getFitHeight());
+        //imageViewToFill.setFitHeight(imageViewToFill.getFitHeight());
+        if(image.getHeight()>image.getWidth())
+            imageViewToFill.fitHeightProperty().bind(Main.stage.widthProperty());
+        else
+            imageViewToFill.fitWidthProperty().bind(Main.stage.heightProperty());
 
         currentIndex++;
     }
@@ -68,7 +73,11 @@ public class DrawViewController {
                 new File(imgArray.get(currentIndex).getPath()).toURI().toString());
         imageViewToFill.setImage(image);
         imageViewToFill.preserveRatioProperty();
-        imageViewToFill.setFitHeight(imageViewToFill.getFitHeight());
+        //imageViewToFill.setFitHeight(imageViewToFill.getFitHeight());
+        if(image.getHeight()>image.getWidth())
+            imageViewToFill.fitHeightProperty().bind(Main.stage.widthProperty());
+        else
+            imageViewToFill.fitWidthProperty().bind(Main.stage.heightProperty());
 
         currentIndex++;
     }
@@ -79,9 +88,12 @@ public class DrawViewController {
 
         if(alert.getResult() == ButtonType.NO)
             getToTheMain();
+        else
+            timeCounter.runAgain();
     }
 
     public void getToTheMain(){
+        Main.stage.setFullScreen(false);
         //Main.stage.setMaximized(false);
         //Main.stage.setAlwaysOnTop(false);
         FXMLLoader loader = new FXMLLoader(LoginController.class.getResource(Keys.Views.MAIN_MENU));
@@ -96,6 +108,23 @@ public class DrawViewController {
         catch(Exception e){
             e.printStackTrace();
         }
+    }
+
+    public void nextButton(){
+        changeImage(1);
+        //System.err.println("WTF");
+        timeCounter.resetTimer();
+    }
+
+    public void prevButton(){
+        changeImage(-1);
+        //System.err.println("WTF");
+        timeCounter.resetTimer();
+    }
+
+    public void stopButton(){
+        timeCounter.stop();
+        getToTheMain();
     }
 
 
