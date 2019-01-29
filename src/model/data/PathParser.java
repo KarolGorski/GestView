@@ -23,8 +23,8 @@ public class PathParser {
                 name = child.getAbsolutePath().substring(path.lastIndexOf('/')+1);
                 if(child.isFile())
                     ((Directory) currentDir).addToList(new Image(name, child.getAbsolutePath(),tagList));
-                if(child.isDirectory())
-                    ((Directory) currentDir).addToList(parse(child.getAbsolutePath(),tagList));
+                //if(child.isDirectory())
+                //    ((Directory) currentDir).addToList(parse(child.getAbsolutePath(),tagList));
             }
         }
 

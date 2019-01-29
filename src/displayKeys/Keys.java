@@ -19,6 +19,7 @@ public class Keys {
 
         static public String MAIN_MENU = "/views/mainMenuView.fxml";
         static public String LOGIN_VIEW = "/views/loginView.fxml";
+        static public String DRAW_VIEW = "/views/drawView.fxml";
     }
 
     static public class Tags{

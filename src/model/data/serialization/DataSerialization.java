@@ -35,7 +35,7 @@ public class DataSerialization {
 
     public boolean saveContent(CompositeStructureRoot root){
         String rootJson = gson.toJson(root);
-        try(BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(pathToSerializedData))){
+        try(BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(pathToSerializedData,false))){
             bufferedWriter.write(rootJson);
         }catch (IOException e){
             e.printStackTrace();

@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.TilePane?>
 <?import javafx.scene.text.Font?>
 
@@ -31,8 +33,8 @@
                                        <children>
                                           <TableView fx:id="pathsTable" editable="true" prefHeight="579.0" prefWidth="248.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                              <columns>
-                                                <TableColumn fx:id = "nameColumn" prefWidth="161.0" text="Name" />
-                                                <TableColumn fx:id = "pathColumn" prefWidth="85.0" text="Path" />
+                                                <TableColumn fx:id="nameColumn" prefWidth="161.0" text="Name" />
+                                                <TableColumn fx:id="pathColumn" prefWidth="85.0" text="Path" />
                                              </columns>
                                              <columnResizePolicy>
                                                 <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -77,55 +79,37 @@
           <Tab closable="false" text="Let's Draw">
             <content>
               <AnchorPane prefHeight="389.0" prefWidth="828.0">
-                     <SplitPane dividerPositions="0.44574290484140233" prefHeight="739.0" prefWidth="1200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                       <items>
-                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="517.0" prefWidth="355.0">
-                              <children>
-                                 <ScrollPane prefHeight="737.0" prefWidth="354.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                    <content>
-                                       <ListView prefHeight="738.0" prefWidth="354.0" />
-                                    </content>
-                                 </ScrollPane>
-                                 <Label alignment="CENTER" prefHeight="27.0" prefWidth="128.0" text="Set your timer:" textFill="#656565" wrapText="true">
-                                    <font>
-                                       <Font size="18.0" />
-                                    </font>
-                                 </Label>
-                              </children>
-                           </AnchorPane>
-                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
-                              <children>
-                                 <SplitPane dividerPositions="0.8086124401913876" prefHeight="737.0" prefWidth="838.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                   <items>
-                                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
-                                          <children>
-                                             <ScrollPane prefHeight="496.0" prefWidth="213.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                                <content>
-                                                   <ListView prefHeight="496.0" prefWidth="213.0" />
-                                                </content>
-                                             </ScrollPane>
-                                            <Label alignment="CENTER" prefHeight="27.0" prefWidth="128.0" text="Pick your tags:" textFill="#656565" wrapText="true">
-                                                <font>
-                                                    <Font size="18.0" />
-                                                </font>
-                                            </Label>
-                                          </children>
-                                       </AnchorPane>
-                                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
-                                          <children>
-                                            <JFXButton alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" prefHeight="735.0" prefWidth="114.0" ripplerFill="#5b5b5b" style="-fx-background-color: #535557#8d8f91; -fx-background-radius: 50;" text="Get started" textAlignment="CENTER" textFill="WHITE" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                                <font> <!--onAction="#login"-->
-                                                    <Font size="24.0" />
-                                                </font>
-                                            </JFXButton>
-                                          </children>
-                                       </AnchorPane>
-                                   </items>
-                                 </SplitPane>
-                              </children>
-                           </AnchorPane>
-                       </items>
-                     </SplitPane>
+                     <Pane layoutX="381.0" layoutY="73.0" maxHeight="412.0" maxWidth="832.0" minHeight="229.0" minWidth="246.0" prefHeight="386.0" prefWidth="438.0" style="-fx-background-color: #fff; -fx-background-radius: 40px;">
+                        <effect>
+                           <DropShadow color="#bcbcbc" />
+                        </effect>
+                        <children>
+                           <Label layoutX="34.0" layoutY="70.0" prefHeight="35.0" prefWidth="205.0" text="Set your timer (s):" textAlignment="CENTER" textFill="#656565" wrapText="true">
+                              <font>
+                                 <Font size="24.0" />
+                              </font>
+                           </Label>
+                           <JFXTextField fx:id="numberOfPhotosField" alignment="BOTTOM_CENTER" layoutX="265.0" layoutY="145.0" prefHeight="77.0" prefWidth="122.0" text="10">
+                              <font>
+                                 <Font size="24.0" />
+                              </font>
+                           </JFXTextField>
+                          <JFXButton alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" layoutX="161.0" layoutY="286.0" onAction="#startDrawingButtonAction" prefHeight="41.0" prefWidth="116.0" ripplerFill="#5b5b5b" style="-fx-background-color: #535557#8d8f91; -fx-background-radius: 50;" text="Get started" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                              <font> <!--onAction="#login"-->
+                                  <Font size="18.0" />
+                              </font>
+                          </JFXButton>
+                           <JFXTextField fx:id="timeField" alignment="BOTTOM_CENTER" layoutX="265.0" layoutY="28.0" prefHeight="77.0" prefWidth="122.0" text="120">
+                              <font>
+                                 <Font size="24.0" />
+                              </font></JFXTextField>
+                           <Label layoutX="34.0" layoutY="193.0" prefHeight="35.0" prefWidth="214.0" text="Number of photos:" textAlignment="CENTER" textFill="#656565" wrapText="true">
+                              <font>
+                                 <Font size="24.0" />
+                              </font>
+                           </Label>
+                        </children>
+                     </Pane>
                   </AnchorPane>
             </content>
           </Tab>

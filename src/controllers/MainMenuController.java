@@ -1,12 +1,17 @@
 package controllers;
 
 import app.Main;
+import com.jfoenix.controls.JFXTextField;
 import com.sun.rowset.internal.Row;
+import displayKeys.Keys;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -14,6 +19,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
 import javafx.stage.DirectoryChooser;
@@ -22,6 +28,7 @@ import model.data.Tag;
 import model.data.filesComposite.Component;
 import model.data.filesComposite.CompositeStructureRoot;
 import model.data.filesComposite.Directory;
+import model.timer.TimeCounter;
 
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -38,6 +45,12 @@ public class MainMenuController {
     TableColumn<Component, String> nameColumn;
     @FXML
     TableColumn<Component, String> pathColumn;
+    @FXML
+    JFXTextField timeField;
+    @FXML
+    JFXTextField numberOfPhotosField;
+
+    Component observedValue;
 
     CompositeStructureRoot observableCompositeRoot;
     ObservableList<Component> observableList;
@@ -55,6 +68,9 @@ public class MainMenuController {
 
         pathsTable.getSelectionModel().selectedItemProperty().addListener(
                 ((observable, oldValue, newValue) -> displayImagesFromAddedDirectory(newValue))
+        );
+        pathsTable.getSelectionModel().selectedItemProperty().addListener(
+                ((observable, oldValue, newValue) ->  observedValue= newValue)
         );
 
     }
@@ -123,7 +139,34 @@ public class MainMenuController {
 
     public void removePathButtonAction(){
 
-        System.err.println("Removing from list is not implemented yet");
+        observableCompositeRoot.removeFromList(observedValue);
+        pathsTable.setItems(observableList);
+    }
+
+    public void startDrawingButtonAction(){
+        FXMLLoader loader = new FXMLLoader(LoginController.class.getResource(Keys.Views.DRAW_VIEW));
+        try{
+            AnchorPane pane = loader.load();
+            Scene scene = new Scene(pane);
+            DrawViewController controller = loader.<DrawViewController>getController();
+
+            ArrayList<Component> arrayList = new ArrayList<Component>();
+            for(Component c : observableList)
+            {
+                arrayList.addAll(((Directory)c).getListOfComponents());
+            }
+
+
+            controller.init(arrayList, new TimeCounter(controller,
+                    Integer.parseInt(timeField.getText()),
+                    Integer.parseInt(numberOfPhotosField.getText())));
+
+            scene.getStylesheets().addAll(LoginController.class.getResource(Keys.Style.STYLE).toExternalForm());
+            Main.stage.setScene(scene);
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
     }
 
 
